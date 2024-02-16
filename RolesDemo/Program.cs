@@ -4,11 +4,14 @@ using RolesDemo.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Skapa en policy
+builder.Services.AddAuthorization(options => options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin")));
+
 // Add services to the container.
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Member");
-    options.Conventions.AuthorizeFolder("/Admin");
+    options.Conventions.AuthorizeFolder("/Admin", "AdminPolicy");
 });
 
 var connectionString = builder.Configuration.GetConnectionString("AuthConnection");
