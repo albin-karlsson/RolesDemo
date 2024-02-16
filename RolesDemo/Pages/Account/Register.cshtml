@@ -1,0 +1,20 @@
+﻿@page
+@model RolesDemo.Pages.Account.RegisterModel
+@{
+}
+
+<h1>Register</h1>
+
+<form method="post">
+    <div>
+        <label for="username-input">Username:</label>
+        <input id="username-input" type="text" asp-for="Username"/>
+    </div>
+
+    <div>
+        <label for="password-input">Password:</label>
+        <input id="password-input" type="password" asp-for="Password" />
+    </div>
+
+    <input type="submit" value="Register"/>
+</form>
