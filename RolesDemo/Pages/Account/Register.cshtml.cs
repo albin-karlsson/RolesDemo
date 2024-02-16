@@ -23,9 +23,28 @@ namespace RolesDemo.Pages.Account
         {
         }
 
-        public void OnPost()
+        public async Task<IActionResult> OnPost()
         {
+            if (!string.IsNullOrEmpty(Username.Trim()) && !string.IsNullOrEmpty(Password.Trim()))
+            {
+                // 1. Skapa ett user-objekt
 
+                IdentityUser newUser = new()
+                {
+                    UserName = Username
+                };
+
+                // 2. Lägg till den usern i databasen med användarnamn och lösenord
+
+                var createUserResult = await _userManager.CreateAsync(newUser, Password);
+
+                if (createUserResult.Succeeded)
+                {
+                    return RedirectToPage("/Account/Login");
+                }
+            }
+
+            return Page();
         }
     }
 }

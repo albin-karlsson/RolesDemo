@@ -2,3 +2,22 @@
 @model RolesDemo.Pages.Account.LoginModel
 @{
 }
+
+<h1>Log In</h1>
+
+@if (Model.ErrorMessage != null)
+{
+    <strong class="text-danger">@Model.ErrorMessage</strong>
+}
+
+<form method="post">
+    <div>
+        <label for="username-input">Username:</label>
+        <input id="username-input" type="text" asp-for="Username" />
+    </div>
+    <div>
+        <label for="password-input">Password</label>
+        <input id="password-input" type="password" asp-for="Password" />
+    </div>
+    <input type="submit" value="Log in" />
+</form>
